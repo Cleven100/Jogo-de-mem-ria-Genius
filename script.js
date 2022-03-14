@@ -13,7 +13,7 @@ let shuffleOrder = () => {
   clickedOrder = [];
 
   for(let i in order){
-      let elementColor = createElement(order[i]);
+      let elementColor = createColorElement(order[i]);
       lightColor(elementColor, Number(i) + 1);
   }
 
@@ -29,3 +29,28 @@ let light = (element, number) => {
       element.classList.remove('selected');
     });
 }
+
+let checkOrder = () => {
+    for(let i in clickedOrder) {
+        if(clickedOrder[i] != order[i]) {
+              lose();
+              break;
+        }
+    }
+    if(clickedOrder.length === order.length){
+        alert(`Pontuação: ${score}\n você acertou! Iniciando próximo nível!!`);
+        nextLevel();
+    }
+}
+
+let click = (color) => {
+    clickedOrder[clickedOrder.length] = color;
+    createColorElement(color).classList.add('selected');
+
+    setTimeout(() => {
+        createColorElement(color).classList.remove('selected');
+    })
+
+    checkOrder();
+}
+
