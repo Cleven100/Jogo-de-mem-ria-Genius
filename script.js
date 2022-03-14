@@ -18,11 +18,11 @@ let shuffleOrder = () => {
   }
 };
 
-let light = (element, number) => {
-  number *= 500;
+let lightColor = (element, number) => {
+  number = number * 500;
   setTimeout(() => {
     element.classList.add("selected");
-  }, tempo - 250);
+  }, number - 250);
   setTimeout(() => {
     element.classList.remove("selected");
   });
@@ -87,10 +87,13 @@ let playGame = () => {
   nextLevel();
 };
 
-green.addEventListener('click', click(0));
-red.addEventListener('click', click(0));
-yellow.addEventListener('click', click(0));
-blue.addEventListener('click', click(0));
+green.onclick = () => click(0);
+red.onclick = () => click(1);
+yellow.onclick = () => click(2);
+blue.onclick = () => click(3);
+
+
+
 
 playGame();
 
